@@ -78,3 +78,11 @@ using following commands, for example.
 % cat ./hosts|ssh root@c3 "cat >> /etc/hosts"
 --------------------------------
 
+==== Fix "hostname" of Containers
+
+--------------------------------
+% ssh c0 hostname c0
+% ssh c1 hostname c1
+% ssh c2 hostname c2
+% ssh c3 hostname c3
+--------------------------------
