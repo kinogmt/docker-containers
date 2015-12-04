@@ -5,7 +5,7 @@
 --------------------------
 centos:
   image: centos-ssh
-  hostname: wcont
+  hostname: cont000
   mem_limit:     4000000000
   privileged: true
 --------------------------
@@ -19,11 +19,46 @@ Starting master container which includes port mapping(80 and 8443 for example).
 % docker-compose -d -p m run -p 8443:8443 -p 80:80 centos
 ----------------------------------------------------------
 
-=== Start More Containers
+=== Start Worker Containers
 
-Starting 3 more containers.
+Starting 3 worker containers.
 
 ----------------------------------------------------------
 % docker-compose scale centos=3
 ----------------------------------------------------------
+
+
+=== Setup IP Addresses
+==== Get IP Addresses
+Get IP Addresses of containers using https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/hosts.sh[hosts.sh].
+
+----------------
+% ./hosts.sh
+usage: ./hosts.sh <number-of-containers>
+% ./hosts.sh 4 > ./hosts
+% cat ./hosts
+172.17.0.2 c0.localdomain c0
+172.17.0.3 c1.localdomain c1
+172.17.0.5 c2.localdomain c2
+172.17.0.4 c3.localdomain c3
+----------------
+
+[NOTE]
+Argument of the test.sh is the number of containers started,
+including both master and workers. "c0" is for the master and
+"c1", "c2", ... are for the workers.
+
+==== Add IP Addresses to /etc/hosts of Docker Host
+Edit /etc/hosts of Docker Host to include the IP addresses of containers.
+
+==== Add IP Addresses to /etc/hosts of Docker Containers
+Add IP addresses of containers to /etc/hosts of each container
+using following commands, for example.
+
+--------------------------------
+% cat ./hosts|ssh root@c0 "cat >> /etc/hosts"
+% cat ./hosts|ssh root@c1 "cat >> /etc/hosts"
+% cat ./hosts|ssh root@c2 "cat >> /etc/hosts"
+% cat ./hosts|ssh root@c3 "cat >> /etc/hosts"
+--------------------------------
 
