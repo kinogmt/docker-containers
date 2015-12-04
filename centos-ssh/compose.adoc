@@ -4,7 +4,7 @@
 Follow the instruction in https://docs.docker.com/compose/install/.
 
 === Pull Docker Image
-Pull Docker image from reposityr and tag it with shorter name like this:
+Pull Docker image from repository and tag it with shorter name like this:
 
 --------------------------------
 % docker pull quay.io/cloudian/centos-ssh
@@ -16,8 +16,8 @@ Pull Docker image from reposityr and tag it with shorter name like this:
 --------------------------
 centos:
   image: centos-ssh
-  hostname: cont000
-  mem_limit:     4000000000
+  hostname: c0
+  mem_limit: 4000000000
   privileged: true
 --------------------------
 
