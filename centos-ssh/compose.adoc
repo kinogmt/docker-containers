@@ -4,7 +4,7 @@
 
 --------------------------
 centos:
-  image: centos-ssh:6.7
+  image: centos-ssh
   hostname: wcont
   mem_limit:     4000000000
   privileged: true

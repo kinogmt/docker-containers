@@ -1,0 +1,12 @@
+== Build Docker Images for CentOS with SSH Access
+
+=== Dockerfile
+
+https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/Dockerfile[Dockerfile]
+
+=== Build
+Run following command in the directory with Dockerfile above.
+
+-----------------------------
+% docker build -t centos-ssh .
+-----------------------------
