@@ -2,11 +2,11 @@
 
 === Dockerfile
 
-https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/Dockerfile[Dockerfile]
+https://github.com/kinogmt/docker-containers/blob/6.7/centos-ssh/Dockerfile[Dockerfile]
 
 === Build
 Run following command in the directory with Dockerfile above.
 
 -----------------------------
-% docker build -t centos-ssh .
+% docker build -t centos-ssh:6.7 .
 -----------------------------
