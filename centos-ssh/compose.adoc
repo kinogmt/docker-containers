@@ -17,8 +17,10 @@ centos:
 === Start Master Container
 
 Starting master container which includes port mapping.
+
 Run following command in the directory with docker-compose.yml file.
-It will starts the master container
+
+It will start the master container
 which includes port mapping for 80 and 8443.
 
 ----------------------------------------------------------
