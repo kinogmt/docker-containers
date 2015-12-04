@@ -16,7 +16,9 @@ centos:
 
 === Start Master Container
 
-Starting master container which includes port mapping(80 and 8443 for example).
+Starting master container which includes port mapping.
+Following example command starts the master container
+which includes port mapping for 80 and 8443.
 
 ----------------------------------------------------------
 % docker-compose -d -p m run -p 8443:8443 -p 80:80 centos
