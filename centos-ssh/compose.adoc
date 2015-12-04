@@ -1,5 +1,8 @@
 == Start Multiple Containers with Docker Compose
 
+=== Install Docker Compose
+Follow the instruction in https://docs.docker.com/compose/install/.
+
 === docker-compose.yml
 
 --------------------------
