@@ -55,8 +55,8 @@ usage: ./hosts.sh <number-of-containers>
 % cat ./hosts
 172.17.0.2 c0.localdomain c0
 172.17.0.3 c1.localdomain c1
-172.17.0.5 c2.localdomain c2
-172.17.0.4 c3.localdomain c3
+172.17.0.4 c2.localdomain c2
+172.17.0.5 c3.localdomain c3
 ----------------
 
 [NOTE]
