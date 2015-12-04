@@ -24,7 +24,7 @@ It will start the master container
 which includes port mapping for 80 and 8443.
 
 ----------------------------------------------------------
-% docker-compose -d -p m run -p 8443:8443 -p 80:80 centos
+% docker-compose -p m run -d -p 8443:8443 -p 80:80 centos
 ----------------------------------------------------------
 
 === Start Worker Containers
