@@ -79,7 +79,7 @@ using following commands, for example.
 ==== Fix "hostname" of Containers
 
 --------------------------------
-% ssh c1 hostname c1
-% ssh c2 hostname c2
-% ssh c3 hostname c3
+% ssh root@c1 hostname c1
+% ssh root@c2 hostname c2
+% ssh root@c3 hostname c3
 --------------------------------
