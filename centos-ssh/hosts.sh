@@ -1,11 +1,5 @@
 #!/bin/sh
-if [ $# -ne 1 ];
-then
-    echo "usage: $0 <number-of-containers>"
-    exit 1
-fi
-
-NN=$1
+NN=$(docker ps |grep w_centos|wc -l)
 
 # IP addresses of workers
 for i in $(seq 1 $NN); do
