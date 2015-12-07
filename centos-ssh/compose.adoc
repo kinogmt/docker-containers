@@ -1,7 +1,11 @@
 == Start Multiple Containers with Docker Compose
+This is an example to start some Docker containers with SSH access
+as the basis for multi-node cluster deployment.
 
-=== Install Docker Compose
-Follow the instruction in https://docs.docker.com/compose/install/.
+Instructions below are assuming basic idea about Docker and
+"Docker Engine" and "Docker Compose" are already installed.
+If not, please read https://docs.docker.com/ first.
+
 
 === Build or Pull Docker Image
 Prepare Docker image for CentOS with SSH access.
