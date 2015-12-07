@@ -18,8 +18,8 @@ If you build centos-ssh image, follow https://github.com/kinogmt/docker-containe
 Pull Docker image from public repository and tag it with shorter name like this:
 
 --------------------------------
-% docker pull quay.io/cloudian/centos-ssh
-% docker tag quay.io/cloudian/centos-ssh centos-ssh
+% docker pull quay.io/cloudian/centos-ssh:6.7
+% docker tag quay.io/cloudian/centos-ssh:6.7 centos-ssh:6.7
 --------------------------------
 
 === docker-compose.yml
@@ -29,7 +29,7 @@ using image named "centos-ssh" which is built or pulled above.
 
 --------------------------
 centos:
-  image: centos-ssh
+  image: centos-ssh:6.7
   hostname: c000
   mem_limit: 4000000000
   privileged: true
@@ -76,10 +76,21 @@ using following commands, for example.
 % cat ./hosts|ssh root@c3 "cat >> /etc/hosts"
 --------------------------------
 
+Or this:
+--------------------------------
+% for i in 1 2 3;do cat ./hosts|ssh root@c$i "cat >> /etc/hosts"; done
+--------------------------------
+
+
 ==== Fix "hostname" of Containers
 
 --------------------------------
 % ssh root@c1 hostname c1
 % ssh root@c2 hostname c2
 % ssh root@c3 hostname c3
+--------------------------------
+
+Or this:
+--------------------------------
+% for i in 1 2 3; do ssh root@c$i hostname c$i; done
 --------------------------------
