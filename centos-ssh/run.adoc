@@ -13,12 +13,12 @@ https://docs.docker.com/engine/installation/fedora/[Fedora]
 This is an example command to pull CentOS official image and run it.
 
 ------------------------
-% docker pull centos
+% docker pull centos:6.7
 Trying to pull repository docker.io/library/centos ...
 
  ...
 
-% docker run -ti --rm centos /bin/sh
+% docker run -ti --rm centos:6.7 /bin/sh
 sh-4.1# cat /etc/redhat-release
 CentOS release 6.7 (Final)
 sh-4.1#
@@ -35,8 +35,8 @@ You can skip building if you pull the public image
 and tag it using the following commands:
 
 ------------------------
-% docker pull quay.io/cloudian/centos-ssh
-% docker tag quay.io/cloudian/centos-ssh centos-ssh
+% docker pull quay.io/cloudian/centos-ssh:6.7
+% docker tag quay.io/cloudian/centos-ssh:6.7 centos-ssh:6.7
 ------------------------
 
 ==== Prepare Dockerfile
@@ -49,15 +49,15 @@ which is based on centos and adding ssh access.
 Run following command in the working directory with Dockerfile.
 
 ----------------------------------
-% docker build -t centos-ssh .
+% docker build -t centos-ssh:6.7 .
 ----------------------------------
 
 === Run Docker Containers
 
 ----------------------------------
-% docker run -m 8192m --privileged=true -d -h c3 --name c3 centos-ssh
-% docker run -m 8192m --privileged=true -d -h c2 --name c2 centos-ssh
-% docker run -m 8192m --privileged=true -d -h c1 --name c1 centos-ssh
+% docker run -m 8192m --privileged=true -d -h c3 --name c3 centos-ssh:6.7
+% docker run -m 8192m --privileged=true -d -h c2 --name c2 centos-ssh:6.7
+% docker run -m 8192m --privileged=true -d -h c1 --name c1 centos-ssh:6.7
 ----------------------------------
 
 === Check IP Addresses of Containers
