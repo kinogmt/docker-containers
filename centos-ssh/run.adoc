@@ -1,0 +1,94 @@
+== Docker Image for CentOS with SSH Access
+
+=== Install Docker Engine
+
+Install the latest stable docker following the instruction:
+https://docs.docker.com/engine/installation/[docs.docker.com].
+
+An example for Fedora is here:
+https://docs.docker.com/engine/installation/fedora/[Fedora]
+
+
+=== Pull CentOS official Docker image
+This is an example command to pull CentOS official image and run it.
+
+------------------------
+% docker pull centos:6.7
+Trying to pull repository docker.io/library/centos ... 6.7: Pulling from library/centos
+47d44cb6f252: Already exists
+5fc6f5013018: Pull complete
+8e6730e0eaef: Pull complete
+b89573a5b116: Pull complete
+3fba1048142f: Pull complete
+Digest: sha256:4f6d8f794af3574eca603b965fc0b63fdf852be29c17d3ab4cad7ec2272b82bd
+Status: Downloaded newer image for docker.io/centos:6.7
+
+% docker run -ti --rm centos:6.7 /bin/sh
+sh-4.1# cat /etc/redhat-release
+CentOS release 6.7 (Final)
+sh-4.1#
+------------------------
+
+
+=== Build a new Docker image with SSH on top of CentOS official Docker image
+
+Prepare Dockerfile in a working directory and run docker-build command.
+
+[NOTE]
+CentOS image with SSH is available at public repository.
+You can skip building if you pull the public image
+and tag it using the following commands:
+
+------------------------
+% docker pull quay.io/cloudian/centos-ssh:6.7
+% docker tag quay.io/cloudian/centos-ssh:6.7 centos-ssh:6.7
+------------------------
+
+==== Prepare Dockerfile
+https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/Dockerfile[Dockerfile]
+
+This file is a "recipe" for building docker images
+which is based on centos:6.7 and adding ssh access.
+
+==== Build Docker Images
+Run following command in the working directory with Dockerfile.
+
+----------------------------------
+% docker build -t centos-ssh:6.7 .
+----------------------------------
+
+=== Run Docker Containers
+
+----------------------------------
+% docker run -m 8192m --privileged=true -d -h c3 --name c3 centos-ssh:6.7
+% docker run -m 8192m --privileged=true -d -h c2 --name c2 centos-ssh:6.7
+% docker run -m 8192m --privileged=true -d -h c1 --name c1 centos-ssh:6.7
+----------------------------------
+
+=== Check IP Addresses of Containers
+----------------------------------
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' c1
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' c2
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' c3
+----------------------------------
+
+Check IP addresses using the commands above and add entries like following
+to /etc/hosts of the Docker Host and also /etc/hosts of c1, c2 and c3.
+
+------------------
+172.17.0.2 c1.localdomain c1
+172.17.0.3 c2.localdomain c2
+172.17.0.4 c3.localdomain c3
+------------------
+
+
+=== SSH Access to Docker Container
+Default password for root is "password" which is set in Dockerfile.
+
+----------------------------------
+% ssh -A root@<ip-address-of-c1>
+% ssh -A root@<ip-address-of-c2>
+% ssh -A root@<ip-address-of-c3>
+----------------------------------
+
+

@@ -17,6 +17,10 @@ RUN (service sshd start; \
 
 RUN (sed -i -e "s/#PermitRootLogin yes/PermitRootLogin yes/" /etc/ssh/sshd_config)
 
+RUN (mkdir -p /root/.ssh/; \
+     echo "StrictHostKeyChecking=no" > /root/.ssh/config; \
+     echo "UserKnownHostsFile=/dev/null" >> /root/.ssh/config)
+
 
 ##########################################################################
 # passwords 

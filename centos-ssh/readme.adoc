@@ -10,3 +10,15 @@ Run following command in the directory with Dockerfile above.
 -----------------------------
 % docker build -t centos-ssh:6.7 .
 -----------------------------
+
+=== Run
+
+==== Start one container simply using docker run command
+
+-----------------------------
+ % docker run -d -h c1 --name c1
+-----------------------------
+
+==== Start multiple containers using docker-compose command
+
+See https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/compose.adoc[here].
