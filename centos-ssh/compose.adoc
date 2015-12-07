@@ -30,7 +30,7 @@ using image named "centos-ssh" which is built or pulled above.
 --------------------------
 centos:
   image: centos-ssh
-  hostname: c0
+  hostname: c000
   mem_limit: 4000000000
   privileged: true
 --------------------------
