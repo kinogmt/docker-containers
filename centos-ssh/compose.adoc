@@ -56,8 +56,8 @@ Get IP Addresses of containers using https://github.com/kinogmt/docker-container
 
 ----------------
 % ./hosts.sh
-172.17.0.3 c1.localdomain c1
-172.17.0.4 c2.localdomain c2
+172.17.0.2 c1.localdomain c1
+172.17.0.3 c2.localdomain c2
 172.17.0.4 c3.localdomain c3
 % ./hosts.sh > ./hosts
 ----------------
