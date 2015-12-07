@@ -42,7 +42,8 @@ of compose file syntax.
 === Start Containers
 
 Starting multiple containers using docker-compose *scale* command.
-For example, following command will start 3 containers for
+For example, following command will start 3 containers for *centos*
+service defined in the docker-compose.yml above.
 
 ----------------------------------------------------------
 % docker-compose scale centos=3
