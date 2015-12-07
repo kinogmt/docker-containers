@@ -3,8 +3,13 @@
 === Install Docker Compose
 Follow the instruction in https://docs.docker.com/compose/install/.
 
-=== Pull Docker Image
-Pull Docker image from repository and tag it with shorter name like this:
+=== Build or Pull Docker Image
+
+==== Build
+If you build centos-ssh image, follow [https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/readme.adoc[this] instruction.
+
+==== Pull
+Pull Docker image from public repository and tag it with shorter name like this:
 
 --------------------------------
 % docker pull quay.io/cloudian/centos-ssh
@@ -12,6 +17,9 @@ Pull Docker image from repository and tag it with shorter name like this:
 --------------------------------
 
 === docker-compose.yml
+
+Following example of docker-compose.yml is for service named "centos"
+using image named "centos-ssh" which is built or pulled above.
 
 --------------------------
 centos:
@@ -21,23 +29,14 @@ centos:
   privileged: true
 --------------------------
 
+See https://docs.docker.com/compose/compose-file/ for detail
+of compose file syntax.
 
-=== Start Master Container
 
-Starting master container which includes port mapping.
+=== Start Containers
 
-Run following command in the directory with docker-compose.yml file.
-
-It will start the master container
-which includes port mapping for 80 and 8443.
-
-----------------------------------------------------------
-% docker-compose -p m run -d -p 8443:8443 -p 80:80 centos
-----------------------------------------------------------
-
-=== Start Worker Containers
-
-Starting 3 worker containers.
+Starting multiple containers using docker-compose *scale* command.
+For example, following command will start 3 containers for
 
 ----------------------------------------------------------
 % docker-compose scale centos=3
@@ -49,20 +48,13 @@ Starting 3 worker containers.
 Get IP Addresses of containers using https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/hosts.sh[hosts.sh].
 
 ----------------
-% ./hosts.sh
-usage: ./hosts.sh <number-of-containers>
-% ./hosts.sh 4 > ./hosts
-% cat ./hosts
-172.17.0.2 c0.localdomain c0
+% ./hosts.sh 3
 172.17.0.3 c1.localdomain c1
 172.17.0.4 c2.localdomain c2
-172.17.0.5 c3.localdomain c3
+172.17.0.4 c3.localdomain c3
+% ./hosts.sh 3 > ./hosts
 ----------------
 
-[NOTE]
-Argument of the test.sh is the number of containers started,
-including both master and workers. "c0" is for the master and
-"c1", "c2", ... are for the workers.
 
 ==== Add IP Addresses to /etc/hosts of Docker Host
 Edit /etc/hosts of Docker Host to include the IP addresses of containers.
@@ -72,7 +64,6 @@ Add IP addresses of containers to /etc/hosts of each container
 using following commands, for example.
 
 --------------------------------
-% cat ./hosts|ssh root@c0 "cat >> /etc/hosts"
 % cat ./hosts|ssh root@c1 "cat >> /etc/hosts"
 % cat ./hosts|ssh root@c2 "cat >> /etc/hosts"
 % cat ./hosts|ssh root@c3 "cat >> /etc/hosts"
@@ -81,7 +72,6 @@ using following commands, for example.
 ==== Fix "hostname" of Containers
 
 --------------------------------
-% ssh c0 hostname c0
 % ssh c1 hostname c1
 % ssh c2 hostname c2
 % ssh c3 hostname c3
