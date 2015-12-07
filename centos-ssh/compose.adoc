@@ -76,10 +76,21 @@ using following commands, for example.
 % cat ./hosts|ssh root@c3 "cat >> /etc/hosts"
 --------------------------------
 
+Or this:
+--------------------------------
+% for i in 1 2 3;do cat ./hosts|ssh root@c$i "cat >> /etc/hosts"; done
+--------------------------------
+
+
 ==== Fix "hostname" of Containers
 
 --------------------------------
 % ssh root@c1 hostname c1
 % ssh root@c2 hostname c2
 % ssh root@c3 hostname c3
+--------------------------------
+
+Or this:
+--------------------------------
+% for i in 1 2 3; do ssh root@c$i hostname c$i; done
 --------------------------------
