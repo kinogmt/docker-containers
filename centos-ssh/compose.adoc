@@ -62,6 +62,18 @@ Get IP Addresses of containers using https://github.com/kinogmt/docker-container
 % ./hosts.sh > ./hosts
 ----------------
 
+==== SSH authorized_keys
+Optionally you can put your ssh authorized_keys to containers
+like following example.
+
+----------------------------------------------
+% for i in 1 2 3;do scp ~/.ssh/authorized_keys root@c$i:.ssh/; done
+----------------------------------------------
+
+Default root password is set as "password" in centos-ssh image.
+You can disables this password for root after successfully putting
+your public key to containers.
+
 
 ==== Add IP Addresses to /etc/hosts of Docker Host
 Edit /etc/hosts of Docker Host to include the IP addresses of containers.
