@@ -46,7 +46,7 @@ For example, following command will start 3 containers for *centos*
 service defined in the docker-compose.yml above.
 
 ----------------------------------------------------------
-% docker-compose scale centos=3
+% docker-compose -p=w scale centos=3
 ----------------------------------------------------------
 
 
@@ -77,6 +77,19 @@ your public key to containers.
 
 ==== Add IP Addresses to /etc/hosts of Docker Host
 Edit /etc/hosts of Docker Host to include the IP addresses of containers.
+
+==== SSH authorized_keys
+Optionally you can put your ssh authorized_keys to containers
+like following example.
+
+----------------------------------------------
+% for i in 1 2 3;do scp ~/.ssh/authorized_keys root@c$i:.ssh/; done
+----------------------------------------------
+
+Default root password is set as "password" in centos-ssh image.
+You can disables this password for root after successfully putting
+your public key to containers.
+
 
 ==== Add IP Addresses to /etc/hosts of Docker Containers
 Add IP addresses of containers to /etc/hosts of each container
