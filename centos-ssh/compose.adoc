@@ -33,6 +33,11 @@ centos:
   hostname: c000
   mem_limit: 4000000000
   privileged: true
+  dns:
+    - 8.8.8.8
+    - 127.0.0.1
+  dns_search:
+    - localdomain
 --------------------------
 
 See https://docs.docker.com/compose/compose-file/ for detail
