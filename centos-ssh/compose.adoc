@@ -34,8 +34,8 @@ centos:
   mem_limit: 4000000000
   privileged: true
   dns:
-    - 8.8.8.8
     - 127.0.0.1
+    - 8.8.8.8
   dns_search:
     - localdomain
 --------------------------
