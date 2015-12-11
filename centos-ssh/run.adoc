@@ -29,16 +29,6 @@ sh-4.1#
 
 Prepare Dockerfile in a working directory and run docker-build command.
 
-[NOTE]
-CentOS image with SSH is available at public repository.
-You can skip building if you pull the public image
-and tag it using the following commands:
-
-------------------------
-% docker pull quay.io/cloudian/centos-ssh:6.7
-% docker tag quay.io/cloudian/centos-ssh:6.7 centos-ssh:6.7
-------------------------
-
 ==== Prepare Dockerfile
 https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/Dockerfile[Dockerfile]
 
@@ -52,7 +42,18 @@ Run following command in the working directory with Dockerfile.
 % docker build -t centos-ssh:6.7 .
 ----------------------------------
 
+[NOTE]
+CentOS image with SSH is available in public repository.
+You can skip building if you pull the public image
+and tag it using the following commands:
+
+------------------------
+% docker pull quay.io/cloudian/centos-ssh:6.7
+% docker tag quay.io/cloudian/centos-ssh:6.7 centos-ssh:6.7
+------------------------
+
 === Run Docker Containers
+Start containers using docker run command like an example below.
 
 ----------------------------------
 % docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h c3 --name c3 centos-ssh:6.7
@@ -61,6 +62,8 @@ Run following command in the working directory with Dockerfile.
 ----------------------------------
 
 === Check IP Addresses of Containers
+Check IP addresses of running containers using docker inspect command.
+
 ----------------------------------
 % docker inspect --format '{{ .NetworkSettings.IPAddress }}' c1
 % docker inspect --format '{{ .NetworkSettings.IPAddress }}' c2
