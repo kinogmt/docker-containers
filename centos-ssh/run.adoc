@@ -55,9 +55,9 @@ Run following command in the working directory with Dockerfile.
 === Run Docker Containers
 
 ----------------------------------
-% docker run -m 8192m --privileged=true -d -h c3 --name c3 centos-ssh
-% docker run -m 8192m --privileged=true -d -h c2 --name c2 centos-ssh
-% docker run -m 8192m --privileged=true -d -h c1 --name c1 centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h c3 --name c3 centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h c2 --name c2 centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h c1 --name c1 centos-ssh
 ----------------------------------
 
 === Check IP Addresses of Containers
