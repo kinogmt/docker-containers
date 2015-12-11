@@ -53,6 +53,7 @@ and tag it using the following commands:
 ------------------------
 
 === Run Docker Containers
+Start containers using docker run command like an example below.
 
 ----------------------------------
 % docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h c3 --name c3 centos-ssh
@@ -61,6 +62,8 @@ and tag it using the following commands:
 ----------------------------------
 
 === Check IP Addresses of Containers
+Check IP addresses of running containers using docker inspect command.
+
 ----------------------------------
 % docker inspect --format '{{ .NetworkSettings.IPAddress }}' c1
 % docker inspect --format '{{ .NetworkSettings.IPAddress }}' c2
