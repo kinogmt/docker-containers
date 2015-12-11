@@ -29,16 +29,6 @@ sh-4.1#
 
 Prepare Dockerfile in a working directory and run docker-build command.
 
-[NOTE]
-CentOS image with SSH is available at public repository.
-You can skip building if you pull the public image
-and tag it using the following commands:
-
-------------------------
-% docker pull quay.io/cloudian/centos-ssh
-% docker tag quay.io/cloudian/centos-ssh centos-ssh
-------------------------
-
 ==== Prepare Dockerfile
 https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/Dockerfile[Dockerfile]
 
@@ -51,6 +41,16 @@ Run following command in the working directory with Dockerfile.
 ----------------------------------
 % docker build -t centos-ssh .
 ----------------------------------
+
+[NOTE]
+CentOS image with SSH is available in public repository.
+You can skip building if you pull the public image
+and tag it using the following commands:
+
+------------------------
+% docker pull quay.io/cloudian/centos-ssh
+% docker tag quay.io/cloudian/centos-ssh centos-ssh
+------------------------
 
 === Run Docker Containers
 
