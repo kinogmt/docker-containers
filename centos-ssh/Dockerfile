@@ -12,13 +12,12 @@ RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontab
 # add epel repository
 RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
-# start sshd to generate host keys
+# start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (service sshd start; \
-     sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config; \
-     sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config; \
+     sed -i 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config; \
+     sed -i 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config; \
+     sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config; \
      sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-Base.repo)
-
-RUN (sed -i -e "s/#PermitRootLogin yes/PermitRootLogin yes/" /etc/ssh/sshd_config)
 
 RUN (mkdir -p /root/.ssh/; \
      echo "StrictHostKeyChecking=no" > /root/.ssh/config; \
