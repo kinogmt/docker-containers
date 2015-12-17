@@ -31,7 +31,7 @@ using image named "centos-ssh" which is built or pulled above.
 centos:
   image: centos-ssh:6.7
   hostname: c000
-  mem_limit: 4000000000
+  mem_limit: 8000000000
   privileged: true
   dns:
     - 127.0.0.1
