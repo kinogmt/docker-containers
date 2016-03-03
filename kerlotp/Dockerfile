@@ -1,6 +1,6 @@
 FROM fedora:22
 ENV VVV=/usr/local/docker
-ENV VER=17.4
+ENV VER=R15B03-1
 
 ADD kerl /usr/bin/kerl
 RUN dnf install -y gcc tar make perl ncurses-devel
