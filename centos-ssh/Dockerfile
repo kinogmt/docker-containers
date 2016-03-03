@@ -1,4 +1,4 @@
-FROM centos:6.7
+FROM centos
 
 ##########################################################################
 ### update glibc-common for locale files
