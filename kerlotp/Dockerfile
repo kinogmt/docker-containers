@@ -1,4 +1,4 @@
-FROM fedora:22
+FROM fedora:23
 ENV VVV=/usr/local/docker
 ENV VER=17.4
 
