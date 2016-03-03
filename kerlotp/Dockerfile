@@ -10,6 +10,9 @@ RUN (mkdir -p $VVV; \
 ###RUN  cat /root/.kerl/builds/${VER}_halfword/otp_build_${VER}.log
 RUN kerl install ${VER}_halfword $VVV/erl.${VER}
 
+ADD startservice.sh /usr/local/startservice.sh
+
+
 EXPOSE 22
 CMD ["/usr/local/startservice.sh"]
 
