@@ -8,7 +8,7 @@ RUN (mkdir -p $VVV; \
      kerl list releases; \
      env KERL_CONFIGURE_OPTIONS=--enable-halfword-emulator kerl build $VER ${VER}_halfword; true)
 ###RUN  cat /root/.kerl/builds/${VER}_halfword/otp_build_${VER}.log
-RUN kerl install ${VER}_halfword $VVV/erl
+RUN kerl install ${VER}_halfword $VVV/erl.${VER}
 
 EXPOSE 22
 CMD ["/usr/local/startservice.sh"]
