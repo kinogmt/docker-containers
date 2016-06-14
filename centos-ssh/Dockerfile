@@ -14,7 +14,7 @@ RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-
 
 
 RUN (rpm -Uvh https://yum.puppetlabs.com/el/6/products/i386/puppetlabs-release-6-7.noarch.rpm; \
-     yum install -y puppet puppet-server puppetserver facter hiera)
+     yum install -y puppet puppet-server puppetserver facter hiera lsyncd)
 
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (service sshd start; \
