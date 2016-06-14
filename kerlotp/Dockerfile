@@ -1,6 +1,6 @@
-FROM fedora:23
-ENV VVV=/usr/local/docker
-ENV VER=17.4
+FROM fedora:22
+ARG VVV=/usr/local/docker
+ARG VER=17.4
 
 ADD kerl /usr/bin/kerl
 RUN (mkdir -p $VVV; \
