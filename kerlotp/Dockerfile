@@ -1,4 +1,4 @@
-FROM fedora:22
+FROM fedora:24
 ENV VVV=/usr/local/docker
 ENV VER=R15B03-1
 
