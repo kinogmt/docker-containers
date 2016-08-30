@@ -1,6 +1,7 @@
 FROM fedora:24
 ENV VVV=/usr/local/docker
 ENV VER=R15B03-1
+ENV FIX=.fc24
 ENV LOG=/root/.kerl/builds/${VER}_halfword/otp_build_${VER}.log
 
 ADD kerl /usr/bin/kerl
@@ -9,7 +10,7 @@ RUN (mkdir -p $VVV; \
      kerl list releases; \
      env KERL_CONFIGURE_OPTIONS=--enable-halfword-emulator kerl build $VER ${VER}_halfword; true)
 RUN (touch ${LOG}; cat ${LOG})
-RUN kerl install ${VER}_halfword $VVV/erl.${VER}
+RUN kerl install ${VER}_halfword $VVV/erl.${VER}${FIX}
 
 ADD startservice.sh /usr/local/startservice.sh
 
