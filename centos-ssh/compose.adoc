@@ -7,21 +7,6 @@ Instructions below are assuming basic idea about Docker and
 If not, please read https://docs.docker.com/ first.
 
 
-=== Build or Pull Docker Image
-Prepare Docker image for CentOS with SSH access.
-There are two ways - build yourself or pull it from public repository.
-
-==== Build
-If you build centos-ssh image, follow https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/readme.adoc[this] instruction.
-
-==== Pull
-Pull Docker image from public repository and tag it with shorter name like this:
-
---------------------------------
-% docker pull quay.io/cloudian/centos-ssh
-% docker tag quay.io/cloudian/centos-ssh centos-ssh
---------------------------------
-
 === docker-compose.yml
 
 Following example of docker-compose.yml is for service named "centos"
