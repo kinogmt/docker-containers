@@ -20,9 +20,9 @@ Pull CentOS images from quay.io.
 Start containers using docker run command like an example below.
 
 ----------------------------------
-% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld3 --name cld3 centos-ssh
-% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld2 --name cld2 centos-ssh
-% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld1 --name cld1 centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld3 --name cld3 quay.io/cloudian/centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld2 --name cld2 quay.io/cloudian/centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld1 --name cld1 quay.io/cloudian/centos-ssh
 ----------------------------------
 
 === Check IP Addresses of Containers
