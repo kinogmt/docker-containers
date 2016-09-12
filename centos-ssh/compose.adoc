@@ -29,7 +29,7 @@ using image named "centos-ssh" which is built or pulled above.
 
 --------------------------
 centos:
-  image: centos-ssh
+  image: quay.io/cloudian/centos-ssh
   hostname: c000
   mem_limit: 8000000000
   privileged: true
@@ -47,10 +47,12 @@ of compose file syntax.
 === Start Containers
 
 Starting multiple containers using docker-compose *scale* command.
-For example, following command will start 3 containers for *centos*
+For example, following command will start 1 container first
+and scale it up to 3 containers of *centos*
 service defined in the docker-compose.yml above.
 
 ----------------------------------------------------------
+% docker-compose -p=w scale centos=1
 % docker-compose -p=w scale centos=3
 ----------------------------------------------------------
 
