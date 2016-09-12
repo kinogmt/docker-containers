@@ -48,9 +48,9 @@ Get IP Addresses of containers using https://github.com/kinogmt/docker-container
 
 ----------------
 % ./hosts.sh
-172.17.0.2 c1.localdomain c1
-172.17.0.3 c2.localdomain c2
-172.17.0.4 c3.localdomain c3
+172.17.0.2 cld1.localdomain cld1
+172.17.0.3 cld2.localdomain cld2
+172.17.0.4 cld3.localdomain cld3
 % ./hosts.sh > ./hosts
 ----------------
 
@@ -63,7 +63,7 @@ Optionally you can put your ssh authorized_keys to containers
 like following example.
 
 ----------------------------------------------
-% for i in 1 2 3;do scp ~/.ssh/authorized_keys root@c$i:.ssh/; done
+% for i in 1 2 3;do scp ~/.ssh/authorized_keys root@cld$i:.ssh/; done
 ----------------------------------------------
 
 Default root password is set as "password" in centos-ssh image.
@@ -76,26 +76,26 @@ Add IP addresses of containers to /etc/hosts of each container
 using following commands, for example.
 
 --------------------------------
-% cat ./hosts|ssh root@c1 "cat >> /etc/hosts"
-% cat ./hosts|ssh root@c2 "cat >> /etc/hosts"
-% cat ./hosts|ssh root@c3 "cat >> /etc/hosts"
+% cat ./hosts|ssh root@cld1 "cat >> /etc/hosts"
+% cat ./hosts|ssh root@cld2 "cat >> /etc/hosts"
+% cat ./hosts|ssh root@cld3 "cat >> /etc/hosts"
 --------------------------------
 
 Or this:
 --------------------------------
-% for i in 1 2 3;do cat ./hosts|ssh root@c$i "cat >> /etc/hosts"; done
+% for i in 1 2 3;do cat ./hosts|ssh root@cld$i "cat >> /etc/hosts"; done
 --------------------------------
 
 
 ==== Fix "hostname" of Containers
 
 --------------------------------
-% ssh root@c1 hostname c1
-% ssh root@c2 hostname c2
-% ssh root@c3 hostname c3
+% ssh root@cld1 hostname cld1
+% ssh root@cld2 hostname cld2
+% ssh root@cld3 hostname cld3
 --------------------------------
 
 Or this:
 --------------------------------
-% for i in 1 2 3; do ssh root@c$i hostname c$i; done
+% for i in 1 2 3; do ssh root@cld$i hostname cld$i; done
 --------------------------------
