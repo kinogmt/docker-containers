@@ -51,7 +51,7 @@ and scale it up to 3 containers of *centos*
 service defined in the docker-compose.yml above.
 
 ----------------------------------------------------------
-% docker-compose -p=w scale centos=1
+% docker-compose -p=w up -d centos
 % docker-compose -p=w scale centos=3
 ----------------------------------------------------------
 
