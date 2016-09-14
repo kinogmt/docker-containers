@@ -2,9 +2,10 @@
 This is an example to start some Docker containers with SSH access
 as the basis for multi-node cluster deployment.
 
-Instructions below are assuming basic idea about Docker and
-"Docker Engine" and "Docker Compose" are already installed.
-If not, please read https://docs.docker.com/ first.
+=== Install Docker
+
+Read link:install.adoc[this document]
+for installation of Docker.
 
 
 === docker-compose.yml
