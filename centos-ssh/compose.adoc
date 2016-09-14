@@ -25,7 +25,7 @@ Password of root on quay.io/cloudian/centos-ssh is "password".
 version: "2"
 services:
   centos:
-    image: quay.io/cloudian/centos-ssh:jdk8
+    image: quay.io/cloudian/centos-ssh
     hostname: cld0  
     privileged: true
     dns:
