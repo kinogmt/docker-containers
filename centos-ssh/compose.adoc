@@ -7,6 +7,11 @@ as the basis for multi-node cluster deployment.
 Read link:install.adoc[this document]
 for installation of Docker.
 
+=== create a network for containers
+
+-----------------------------------
+% docker network create w_net1
+-----------------------------------
 
 === docker-compose.yml
 
@@ -17,16 +22,21 @@ using Docker image quay.io/cloudian/centos-ssh.
 Password of root on quay.io/cloudian/centos-ssh is "password".
 
 --------------------------
-centos:
-  image: quay.io/cloudian/centos-ssh
-  hostname: c000
-  mem_limit: 8000000000
-  privileged: true
-  dns:
-    - 127.0.0.1
-    - 8.8.8.8
-  dns_search:
-    - localdomain
+version: "2"
+services:
+  centos:
+    image: quay.io/cloudian/centos-ssh:jdk8
+    hostname: cld0  
+    privileged: true
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+    dns_search:
+      - localdomain
+    networks:
+      - net1
+networks:
+  net1:
 --------------------------
 
 See https://docs.docker.com/compose/compose-file/ for detail
