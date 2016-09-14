@@ -43,9 +43,8 @@ service defined in the docker-compose.yml above.
 ----------------------------------------------------------
 
 
-=== Setup IP Addresses
-==== Get IP Addresses
-Get IP Addresses of containers using https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/hosts.sh[hosts.sh].
+=== Get IP Addresses
+Get IP Addresses of containers using link:hosts.sh[hosts.sh].
 
 ----------------
 % ./hosts.sh
@@ -56,47 +55,3 @@ Get IP Addresses of containers using https://github.com/kinogmt/docker-container
 ----------------
 
 
-==== Add IP Addresses to /etc/hosts of Docker Host
-Edit /etc/hosts of Docker Host to include the IP addresses of containers.
-
-==== SSH authorized_keys
-Optionally you can put your ssh authorized_keys to containers
-like following example.
-
-----------------------------------------------
-% for i in 1 2 3;do scp ~/.ssh/authorized_keys root@cld$i:.ssh/; done
-----------------------------------------------
-
-Default root password is set as "password" in centos-ssh image.
-You can disables this password for root after successfully putting
-your public key to containers.
-
-
-==== Add IP Addresses to /etc/hosts of Docker Containers
-Add IP addresses of containers to /etc/hosts of each container
-using following commands, for example.
-
---------------------------------
-% cat ./hosts|ssh root@cld1 "cat >> /etc/hosts"
-% cat ./hosts|ssh root@cld2 "cat >> /etc/hosts"
-% cat ./hosts|ssh root@cld3 "cat >> /etc/hosts"
---------------------------------
-
-Or this:
---------------------------------
-% for i in 1 2 3;do cat ./hosts|ssh root@cld$i "cat >> /etc/hosts"; done
---------------------------------
-
-
-==== Fix "hostname" of Containers
-
---------------------------------
-% ssh root@cld1 hostname cld1
-% ssh root@cld2 hostname cld2
-% ssh root@cld3 hostname cld3
---------------------------------
-
-Or this:
---------------------------------
-% for i in 1 2 3; do ssh root@cld$i hostname cld$i; done
---------------------------------
