@@ -11,7 +11,10 @@ for installation of Docker.
 === docker-compose.yml
 
 Following example of docker-compose.yml is for service named "centos"
-using image named "centos-ssh" which is built or pulled above.
+using Docker image quay.io/cloudian/centos-ssh.
+
+[NOTE]
+Password of root on quay.io/cloudian/centos-ssh is "password".
 
 --------------------------
 centos:
