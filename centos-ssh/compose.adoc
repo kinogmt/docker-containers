@@ -29,9 +29,20 @@ services:
       - localdomain
     networks:
       - net1
+  centos_m:
+    extends: centos
+    ports:
+      - "80:80"
+      - "8443:8443"
+      - "18081:18081"
+      - "19443:19443"
 networks:
   net1:
 --------------------------
+
+[NOTE]
+Service "centos_m" is almost same as "centos" except
+forwarding of some ports from Docker host to the container.
 
 See https://docs.docker.com/compose/compose-file/ for detail
 of compose file syntax.
@@ -40,12 +51,12 @@ of compose file syntax.
 === Start Containers
 
 Starting multiple containers using docker-compose *scale* command.
-For example, following command will start 1 container first
-and scale it up to 3 containers of *centos*
+For example, following command will start 1 master container first
+and start 2 more containers of *centos*
 service defined in the docker-compose.yml above.
 
 ----------------------------------------------------------
-% docker-compose -p=w up -d centos
+% docker-compose -p=w up -d centos_m
 % docker-compose -p=w scale centos=3
 ----------------------------------------------------------
 
