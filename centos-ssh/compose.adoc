@@ -57,7 +57,7 @@ service defined in the docker-compose.yml above.
 
 ----------------------------------------------------------
 % docker-compose -p=w up -d centos_m
-% docker-compose -p=w scale centos=3
+% docker-compose -p=w scale centos=2
 ----------------------------------------------------------
 
 
