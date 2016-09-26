@@ -7,12 +7,6 @@ as the basis for multi-node cluster deployment.
 Read link:install.adoc[this document]
 for installation of Docker.
 
-=== create a network for containers
-
------------------------------------
-% docker network create w_net1
------------------------------------
-
 === docker-compose.yml
 
 Following example of docker-compose.yml is for service named "centos"
