@@ -72,7 +72,6 @@ Get IP Addresses of containers using link:hosts.sh[hosts.sh].
 172.17.0.2 cld1.localdomain cld1
 172.17.0.3 cld2.localdomain cld2
 172.17.0.4 cld3.localdomain cld3
-% ./hosts.sh > ./hosts
 ----------------
 
 
