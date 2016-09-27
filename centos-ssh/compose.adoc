@@ -43,6 +43,9 @@ networks:
 [NOTE]
 Service "centos_m" is almost same as "centos" except
 forwarding of some ports from Docker host to the container.
+Example above is forwarding 80, 8443, 18081 and 19443
+to the container for centos_m service.
+
 
 See https://docs.docker.com/compose/compose-file/ for detail
 of compose file syntax.
