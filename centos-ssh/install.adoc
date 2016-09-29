@@ -32,6 +32,8 @@ EOF
 # service docker start
 --------
 
+=== Setup for non-root account
+
 If you use docker with non-root account,
 add the account to "docker" group
 (usermod below is effective after re-login tho the account).
