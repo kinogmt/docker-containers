@@ -24,6 +24,7 @@ RUN (service sshd start; \
      sed -i 's/enabled=0/enabled=1/' /etc/yum.repos.d/CentOS-Base.repo)
 
 RUN (mkdir -p /root/.ssh/; \
+     rm -f /var/lib/rpm/.rpm.lock; \
      echo "StrictHostKeyChecking=no" > /root/.ssh/config; \
      echo "UserKnownHostsFile=/dev/null" >> /root/.ssh/config)
 
