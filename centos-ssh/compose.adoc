@@ -2,43 +2,50 @@
 This is an example to start some Docker containers with SSH access
 as the basis for multi-node cluster deployment.
 
-Instructions below are assuming basic idea about Docker and
-"Docker Engine" and "Docker Compose" are already installed.
-If not, please read https://docs.docker.com/ first.
+=== Install Docker
 
-
-=== Build or Pull Docker Image
-Prepare Docker image for CentOS with SSH access.
-There are two ways - build yourself or pull it from public repository.
-
-==== Build
-If you build centos-ssh image, follow https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/readme.adoc[this] instruction.
-
-==== Pull
-Pull Docker image from public repository and tag it with shorter name like this:
-
---------------------------------
-% docker pull quay.io/cloudian/centos-ssh
-% docker tag quay.io/cloudian/centos-ssh centos-ssh
---------------------------------
+Read link:install.adoc[this document]
+for installation of Docker.
 
 === docker-compose.yml
 
 Following example of docker-compose.yml is for service named "centos"
-using image named "centos-ssh" which is built or pulled above.
+using Docker image quay.io/cloudian/centos-ssh.
+
+[NOTE]
+Password of root on quay.io/cloudian/centos-ssh is "password".
 
 --------------------------
-centos:
-  image: centos-ssh
-  hostname: c000
-  mem_limit: 8000000000
-  privileged: true
-  dns:
-    - 127.0.0.1
-    - 8.8.8.8
-  dns_search:
-    - localdomain
+version: "2"
+services:
+  centos:
+    image: quay.io/cloudian/centos-ssh
+    hostname: cld0  
+    privileged: true
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+    dns_search:
+      - localdomain
+    networks:
+      - net1
+  centos_m:
+    extends: centos
+    ports:
+      - "80:80"
+      - "8443:8443"
+      - "18081:18081"
+      - "19443:19443"
+networks:
+  net1:
 --------------------------
+
+[NOTE]
+Service "centos_m" is almost same as "centos" except
+forwarding of some ports from Docker host to the container.
+Example above is forwarding 80, 8443, 18081 and 19443
+to the container for centos_m service.
+
 
 See https://docs.docker.com/compose/compose-file/ for detail
 of compose file syntax.
@@ -47,68 +54,24 @@ of compose file syntax.
 === Start Containers
 
 Starting multiple containers using docker-compose *scale* command.
-For example, following command will start 3 containers for *centos*
+For example, following command will start 1 master container first
+and start 2 more containers of *centos*
 service defined in the docker-compose.yml above.
 
 ----------------------------------------------------------
-% docker-compose -p=w scale centos=3
+% docker-compose -p=w up -d centos_m
+% docker-compose -p=w scale centos=2
 ----------------------------------------------------------
 
 
-=== Setup IP Addresses
-==== Get IP Addresses
-Get IP Addresses of containers using https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/hosts.sh[hosts.sh].
+=== Get IP Addresses
+Get IP Addresses of containers using link:hosts.sh[hosts.sh].
 
 ----------------
 % ./hosts.sh
-172.17.0.2 c1.localdomain c1
-172.17.0.3 c2.localdomain c2
-172.17.0.4 c3.localdomain c3
-% ./hosts.sh > ./hosts
+172.17.0.2 cld1.localdomain cld1
+172.17.0.3 cld2.localdomain cld2
+172.17.0.4 cld3.localdomain cld3
 ----------------
 
 
-==== Add IP Addresses to /etc/hosts of Docker Host
-Edit /etc/hosts of Docker Host to include the IP addresses of containers.
-
-==== SSH authorized_keys
-Optionally you can put your ssh authorized_keys to containers
-like following example.
-
-----------------------------------------------
-% for i in 1 2 3;do scp ~/.ssh/authorized_keys root@c$i:.ssh/; done
-----------------------------------------------
-
-Default root password is set as "password" in centos-ssh image.
-You can disables this password for root after successfully putting
-your public key to containers.
-
-
-==== Add IP Addresses to /etc/hosts of Docker Containers
-Add IP addresses of containers to /etc/hosts of each container
-using following commands, for example.
-
---------------------------------
-% cat ./hosts|ssh root@c1 "cat >> /etc/hosts"
-% cat ./hosts|ssh root@c2 "cat >> /etc/hosts"
-% cat ./hosts|ssh root@c3 "cat >> /etc/hosts"
---------------------------------
-
-Or this:
---------------------------------
-% for i in 1 2 3;do cat ./hosts|ssh root@c$i "cat >> /etc/hosts"; done
---------------------------------
-
-
-==== Fix "hostname" of Containers
-
---------------------------------
-% ssh root@c1 hostname c1
-% ssh root@c2 hostname c2
-% ssh root@c3 hostname c3
---------------------------------
-
-Or this:
---------------------------------
-% for i in 1 2 3; do ssh root@c$i hostname c$i; done
---------------------------------

@@ -1,0 +1,59 @@
+== Install Docker Engine and Compose
+
+=== Install Docker Engine on CentOS 7
+
+--------
+# tee /etc/yum.repos.d/docker.repo <<-'EOF'
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+EOF
+
+# yum install docker-engine
+# service docker start
+--------
+
+=== Install Docker Engine on Fedora
+
+--------
+# tee /etc/yum.repos.d/docker.repo <<-'EOF'
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/fedora/$releasever/
+enabled=1
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
+EOF
+
+# yum install docker-engine
+# service docker start
+--------
+
+=== Setup for non-root account
+
+If you use docker with non-root account,
+add the account to "docker" group
+(usermod below is effective after re-login tho the account).
+
+--------
+# usermod -a -G docker <you-account-name>
+--------
+
+=== Install Docker Compose on CentOS 7 or Fedora
+
+--------
+# curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+# chmod +x /usr/local/bin/docker-compose
+--------
+
+=== Docker Official Installation document
+
+See https://docs.docker.com/compose/install/ and
+https://docs.docker.com/engine/installation/
+for more detail and up-to-date installation document
+of Docker Engine and Compose.
+
+

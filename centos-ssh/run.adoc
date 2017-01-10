@@ -9,84 +9,48 @@ An example for Fedora is here:
 https://docs.docker.com/engine/installation/fedora/[Fedora]
 
 
-=== Pull CentOS official Docker image
-This is an example command to pull CentOS official image and run it.
-
-------------------------
-% docker pull centos
-Trying to pull repository docker.io/library/centos ...
-
- ...
-
-% docker run -ti --rm centos /bin/sh
-sh-4.1# cat /etc/redhat-release
-CentOS release 6.7 (Final)
-sh-4.1#
-------------------------
-
-
-=== Build a new Docker image with SSH on top of CentOS official Docker image
-
-Prepare Dockerfile in a working directory and run docker-build command.
-
-==== Prepare Dockerfile
-https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/Dockerfile[Dockerfile]
-
-This file is a "recipe" for building docker images
-which is based on centos and adding ssh access.
-
-==== Build Docker Images
-Run following command in the working directory with Dockerfile.
-
-----------------------------------
-% docker build -t centos-ssh .
-----------------------------------
-
-[NOTE]
-CentOS image with SSH is available in public repository.
-You can skip building if you pull the public image
-and tag it using the following commands:
+=== Pull Docker Images
+Pull CentOS images from quay.io.
 
 ------------------------
 % docker pull quay.io/cloudian/centos-ssh
-% docker tag quay.io/cloudian/centos-ssh centos-ssh
 ------------------------
 
 === Run Docker Containers
 Start containers using docker run command like an example below.
 
 ----------------------------------
-% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h c3 --name c3 centos-ssh
-% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h c2 --name c2 centos-ssh
-% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h c1 --name c1 centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld3 --name cld3 quay.io/cloudian/centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld2 --name cld2 quay.io/cloudian/centos-ssh
+% docker run --dns 127.0.0.1 --dns 8.8.8.8 -m 8192m --privileged=true -d -h cld1 --name cld1 quay.io/cloudian/centos-ssh
 ----------------------------------
 
 === Check IP Addresses of Containers
 Check IP addresses of running containers using docker inspect command.
 
 ----------------------------------
-% docker inspect --format '{{ .NetworkSettings.IPAddress }}' c1
-% docker inspect --format '{{ .NetworkSettings.IPAddress }}' c2
-% docker inspect --format '{{ .NetworkSettings.IPAddress }}' c3
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' cld1
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' cld2
+% docker inspect --format '{{ .NetworkSettings.IPAddress }}' cld3
 ----------------------------------
 
 Check IP addresses using the commands above and add entries like following
-to /etc/hosts of the Docker Host and also /etc/hosts of c1, c2 and c3.
+to /etc/hosts of the Docker Host and also /etc/hosts of cld1, cld2 and cld3.
 
 ------------------
-172.17.0.2 c1.localdomain c1
-172.17.0.3 c2.localdomain c2
-172.17.0.4 c3.localdomain c3
+172.17.0.2 cld1.localdomain cld1
+172.17.0.3 cld2.localdomain cld2
+172.17.0.4 cld3.localdomain cld3
 ------------------
 
 
 === SSH Access to Docker Container
-Default password for root is "password" which is set in Dockerfile.
+Default password for root is "password".
 
 ----------------------------------
-% ssh -A root@<ip-address-of-c1>
-% ssh -A root@<ip-address-of-c2>
-% ssh -A root@<ip-address-of-c3>
+% ssh -A root@<ip-address-of-cld1>
+% ssh -A root@<ip-address-of-cld2>
+% ssh -A root@<ip-address-of-cld3>
 ----------------------------------
 
 

@@ -1,17 +1,11 @@
 === run
 
 -------------------
-docker run --rm -v /usr/local/docker:/usr/local/docker quay.io/cloudian/cqc
+docker run --rm -v /usr/local/docker:/usr/local/docker quay.io/cloudian/cqc:TAG
 -------------------
 
 === activate
 
 -------------------
-source /usr/local/docker/erl/activate
--------------------
-
-=== build older version
-
--------------------
-docker build --build-arg VER=R15B03 -t ttt .
+source /usr/local/docker/erl.VERSION/activate
 -------------------
