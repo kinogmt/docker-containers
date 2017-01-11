@@ -12,10 +12,7 @@ RUN yum install -y sudo passwd openssh-server openssh-clients tar screen crontab
 # add epel repository
 RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 
-RUN (yum install -y facter hiera lsyncd sshpass rng-tools)
-
-RUN (rpm -Uvh https://yum.puppetlabs.com/el/6/products/i386/puppet-3.7.4-1.el6.noarch.rpm; \
-     rpm -Uvh https://yum.puppetlabs.com/el/6/products/i386/puppet-server-3.7.4-1.el6.noarch.rpm)
+RUN (yum install -y hiera lsyncd sshpass rng-tools)
 
 # start sshd to generate host keys, patch sshd_config and enable yum repos
 RUN (service sshd start; \
