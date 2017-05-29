@@ -42,6 +42,27 @@ add the account to "docker" group
 # usermod -a -G docker <you-account-name>
 --------
 
+[NOTE]
+===============================
+As of 1.12.6 on CentOS 7, the Docker group name is no longer "docker"
+but "dockerroot". If this is the case, run the following command
+instead.
+
+--------
+# usermod -a -G dockerroot <you-account-name>
+--------
+
+Also, dockerroot group may not have read/write access to the
+docker.sock file. If so, change the group of the file to dockerroot.
+
+--------
+# ls -l /var/run/docker.sock
+srw-rw----. 1 root root 0 May 29 01:48 /var/run/docker.sock
+# chown root:dockerroot /var/run/docker.sock
+--------
+
+===============================
+
 === Install Docker Compose on CentOS 7 or Fedora
 
 --------
