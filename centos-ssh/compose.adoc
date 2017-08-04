@@ -33,6 +33,7 @@ services:
     extends: centos
     ports:
       - "80:80"
+      - "2222:22"
       - "8443:8443"
       - "18081:18081"
       - "19443:19443"
@@ -43,7 +44,7 @@ networks:
 [NOTE]
 Service "centos_m" is almost same as "centos" except
 forwarding of some ports from Docker host to the container.
-Example above is forwarding 80, 8443, 18081 and 19443
+Example above is forwarding 80, 2222, 8443, 18081 and 19443
 to the container for centos_m service.
 
 
