@@ -1,0 +1,5 @@
+== docker-containers
+
+This repository is obsolete.
+Use kinogmt/centos-ssh.git or kingomt/kerlotp.git instead.
+
