@@ -1,5 +1,8 @@
 == Build Docker Images for CentOS with SSH Access
 
+This repository is obsolete.
+Use kinogmt/centos-ssh.git instead.
+
 === Dockerfile
 
 https://github.com/kinogmt/docker-containers/blob/master/centos-ssh/Dockerfile[Dockerfile]
